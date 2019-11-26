@@ -1,0 +1,96 @@
+<html lang="zh-TW">
+
+    <head>
+        <meta charset="utf-8">
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+     
+         <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.36/dist/web3.min.js" integrity="sha256-nWBTbvxhJgjslRyuAKJHK+XcZPlCnmIAAMixz6EefVk=" crossorigin="anonymous"></script>
+        
+         
+         
+    </head>
+    
+    <body>
+        <div class="ney">
+          <p>這是一個紀錄文字的網頁</p>
+          <p>用戶地址:<span id="Account_id"></span></p>
+         
+           
+            輸入文字：<input type="text" name="欄位名稱" id="word" >
+           
+            <br>
+            輸入暱稱：<input type="text" name="欄位名稱" id="Name">
+            <br>
+            <button onclick="getMoney()">輸入</button>
+
+      
+          
+          <p style="size:15px;color:rgb(157, 22, 59);">文字上限一萬字元</p>
+        </div>
+            
+          
+    
+  
+    <style>
+      .ney{
+        width:600px;
+        height:200px;
+        background-color:rgb(190, 108, 231);
+        border: solid 7px #54575f;
+
+      }
+
+  
+      </style>
+    </body>
+    <script>
+            if (typeof web3 !== 'undefined') {
+          web3 = new Web3(web3.currentProvider);
+        } else {
+          // 確認是否使用metamask地址
+          web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+        }
+
+            var myContract;
+            var coinbase;
+
+            async function foso(){
+                coinbase = await web3.eth.getCoinbase();
+
+                var balance = await web3.eth.getBalance(coinbase);
+                $("#Account_id").text('0x16581a654353C0680d2CA508da1Bc9CB3d52239e');
+               
+
+                var contract_address = "0x16581a654353C0680d2CA508da1Bc9CB3d52239e";//合約位置
+                var contract_abi = [{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"ArticleWriter","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"writers","outputs":[{"name":"owner","type":"address"},{"name":"text","type":"string"},{"name":"name","type":"string"},{"name":"number","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"text","type":"string"},{"name":"name","type":"string"}],"name":"RecordText","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"owner","type":"address"}],"name":"getArticleByOwner","outputs":[{"name":"","type":"uint256[]"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"ArticleContent","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"anonymous":false,"inputs":[{"indexed":false,"name":"owner","type":"address"},{"indexed":false,"name":"text","type":"string"},{"indexed":false,"name":"name","type":"string"},{"indexed":false,"name":"Number","type":"uint256"}],"name":"Record","type":"event"}];
+
+                
+                myContract = new web3.eth.Contract(contract_abi, contract_address);
+
+            }
+            foso();
+
+
+           async function getMoney(){
+          
+             var ID = document.getElementById("word").value; 
+             var NM = document.getElementById("Name").value; 
+            
+            
+            myContract.methods.RecordText(ID,NM).send({from: coinbase }).then(function(receipt){
+
+            alert("交易成功，紀錄文字");
+           
+               
+            });
+
+
+          }
+          
+        
+            
+
+        
+    </script>
+    
+    </html>
