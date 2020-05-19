@@ -16,7 +16,9 @@
     
     
 3. ### 使用方法
+    - 開始使用Metamask
     - 登入Metamask
+    - 拿到Ethereum上虛擬貨幣
     
 ![](https://www.google.com/url?sa=i&url=https%3A%2F%2Fmetamask.zendesk.com%2Fhc%2Fen-us&psig=AOvVaw2z7rpknMIvNgT5SnoLxMgX&ust=1574828773487000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPiFxsCEh-YCFQAAAAAdAAAAABAD)
   
@@ -27,13 +29,13 @@
     完成以上操作即可以記錄內容
 
 
-## 二.調出資料
+## 二. 調出資料
     
 1. ### 文章作者
     - 透過輸入流水號回傳文章作者Address & 暱稱
     - 透過輸入 作者Address 查詢相關文章
     
-## 三.使用的套件及軟體
+## 三. 使用的套件及軟體
 
 - 1.Web3.js
 - 2.Metamask
