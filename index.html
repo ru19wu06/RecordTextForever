@@ -14,11 +14,15 @@
 
 <div class="main">
 
+  
+
 <div id="wb_element_instance15" class="wb_element" style="overflow: hidden; min-height: 0px; height:1500px;margin-top:-30%;margin-left:50px;">
   <div style="margin-top:2%">
 
 
       <div style="margin-left: 10px;margin-top:35%"> 
+          <div style="margin-left:30%;"><h1>永久記錄文字在區塊鏈上</h1></div>
+          <br>
           <h2 class="wb-stl-heading2">
             <font color="#1f65ab">Upload in another way</font>
           </h2>
@@ -42,8 +46,8 @@
             
 
             <br>
-            <br>
-            <a style="size:15px;color:#3B0D11;font-weight:bold">文字上限一萬字元</a>
+            
+            <a style="size:15px;margin-top:25px;color:#3B0D11;font-weight:bold">文字上限一萬字元</a>
         </div>
     </div>
     <div  style="margin-top:2%"><h3>文字透過Metamask上鏈後，在下面的欄位輸入上鏈文章編號後，回傳撰寫者Address與文章內容。</h3></div>
@@ -94,7 +98,7 @@
   
        width: 600px;
        height: 300px;
-       background-color: rgb(31, 101, 171);
+       background-color: rgb(35, 104, 171);
        border: solid 3px #484a52;
        border-radius:20px 20px 20px 20px;
      }
@@ -159,8 +163,13 @@ myContract.methods.RecordText(ID, NM).send({ from: coinbase }).then(function (re
 async function getNums(){
  var asf = document.getElementById("NUMS").value;
  $("#getNum").text(" "+asf);
- var countS = await myContract.methods.count().call({from: coinbase});//
- 
+ var countS = await myContract.methods.count().call({from: coinbase});//調用力量
+ //alert(countS);
+//  if(asf > countS){
+//    alert("尚未記錄編號"+asf+"的文字");
+//     return;
+//  }
+
 
  var contract_balance = await myContract.methods.ArticleWriter(asf).call({from: coinbase});//調用
     $("#getAdd").text(" "+contract_balance);
